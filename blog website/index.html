@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .blog-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .post {
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .post h2 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        .post p {
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+
+        .comment-section {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .comment-section h3 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .comment-form {
+            margin-top: 20px;
+        }
+
+        .comment-form input,
+        .comment-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .comment-form button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .comment-form button:hover {
+            background-color: #444;
+        }
+
+        .comment-list {
+            margin-top: 20px;
+        }
+
+        .comment {
+            background-color: #f1f1f1;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to My Blog</h1>
+    <p>Thoughts, Stories, and Ideas</p>
+</header>
+
+<div class="blog-container">
+    <!-- Blog Post 1 -->
+    <div class="post" id="post1">
+        <h2>My First Blog Post</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id facilisis tortor. Nullam id turpis eu leo dictum ullamcorper. Phasellus sed mi turpis.</p>
+
+        <!-- Comment Section -->
+        <div class="comment-section">
+            <h3>Comments</h3>
+            <div class="comment-form">
+                <input type="text" id="name1" placeholder="Your Name" required>
+                <textarea id="comment1" placeholder="Write a comment..." rows="4" required></textarea>
+                <button onclick="addComment('post1')">Post Comment</button>
+            </div>
+
+            <div class="comment-list" id="comments-post1">
+                <!-- Comments will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Post 2 -->
+    <div class="post" id="post2">
+        <h2>My Second Blog Post</h2>
+        <p>Donec euismod metus nec velit vehicula, eu varius eros malesuada. Fusce convallis orci at ex aliquam, ut fermentum eros rhoncus. Curabitur hendrerit libero ac suscipit interdum.</p>
+
+        <!-- Comment Section -->
+        <div class="comment-section">
+            <h3>Comments</h3>
+            <div class="comment-form">
+                <input type="text" id="name2" placeholder="Your Name" required>
+                <textarea id="comment2" placeholder="Write a comment..." rows="4" required></textarea>
+                <button onclick="addComment('post2')">Post Comment</button>
+            </div>
+
+            <div class="comment-list" id="comments-post2">
+                <!-- Comments will be added here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Function to add a comment
+    function addComment(postId) {
+        const nameInput = document.getElementById('name' + postId.charAt(postId.length - 1));
+        const commentInput = document.getElementById('comment' + postId.charAt(postId.length - 1));
+        const commentList = document.getElementById('comments-' + postId);
+
+        const name = nameInput.value.trim();
+        const comment = commentInput.value.trim();
+
+        if (name && comment) {
+            const newComment = document.createElement('div');
+            newComment.classList.add('comment');
+            newComment.innerHTML = `<strong>${name}</strong><p>${comment}</p>`;
+            commentList.appendChild(newComment);
+
+            // Clear input fields
+            nameInput.value = '';
+            commentInput.value = '';
+        } else {
+            alert('Please fill out both fields.');
+        }
+    }
+</script>
+
+</body>
+</html>
